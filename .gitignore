@@ -1,0 +1,12 @@
+# Installed dependencies and private runtime state stay on the cloud machine.
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.cloud/state/
+.cloud/private/
+.cloud/logs/

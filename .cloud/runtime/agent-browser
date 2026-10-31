@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cloud_state=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
+browser_args=(--executable-path /usr/bin/chromium)
+if [[ -n "${HTTPS_PROXY:-}" ]]; then browser_args+=(--proxy "$HTTPS_PROXY"); fi
+if [[ -n "${CODEX_PROXY_CERT:-}" && -f "$CODEX_PROXY_CERT" ]]; then browser_args+=(--ca-cert "$CODEX_PROXY_CERT"); fi
+exec "$cloud_state/browser-tools/node_modules/.bin/agent-browser" "${browser_args[@]}" "$@"

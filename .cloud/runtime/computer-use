@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cloud_state=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
+cloud_repo=$(cat "$cloud_state/repository-path")
+export DISPLAY="${DISPLAY:-:97}"
+export XAUTHORITY="${XAUTHORITY:-$cloud_state/desktop-tools/Xauthority}"
+exec "$cloud_state/desktop-tools/venv/bin/python" "$cloud_repo/.agents/skills/computer-use-cloud/scripts/desktop.py" "$@"

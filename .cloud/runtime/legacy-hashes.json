@@ -1,0 +1,14 @@
+{
+  "bin/agent-browser": [
+    "17a2443768d8c92d4371368d554f4758cdfafada3f022e85fae486a0306ee22f"
+  ],
+  "bin/computer-use": [
+    "c7fc8529862fd9fb84b6eb11fb6e56b99acfe6a99ff4c590c9f0ac74aba80790"
+  ],
+  "computer-start.sh": [
+    "33d50e95ef743f458b437ef1796376cc94645455cd6d9c69feee361b8e573af9"
+  ],
+  "desktop-tools/xorg.conf": [
+    "7d4502e99bf44f076903e1ebb3129414ff5893e09f2b69c81d7f39a976c2d9c9"
+  ]
+}

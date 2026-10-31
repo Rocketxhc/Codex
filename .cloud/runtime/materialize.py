@@ -13,6 +13,7 @@ legacy = json.loads((source / 'runtime/legacy-hashes.json').read_text())
 assets = {
     'bin/agent-browser': 'runtime/agent-browser',
     'bin/computer-use': 'runtime/computer-use',
+    'bin/resume-skill': 'runtime/resume-skill',
     'computer-start.sh': 'runtime/computer-start.sh',
     'activate.sh': 'runtime/activate.sh',
     'desktop-tools/xorg.conf': 'runtime/xorg.conf',

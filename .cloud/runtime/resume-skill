@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cloud_state=${CLOUD_SKILLS_STATE_DIR:-/workspace/skill-platform}
+cloud_repo=${CLOUD_SKILLS_REPO:-$(cat "$cloud_state/repository-path")}
+exec python3 "$cloud_repo/.agents/skills/toudi-jianli-github/scripts/cloud_entry.py" "$@"

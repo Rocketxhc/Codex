@@ -18,6 +18,7 @@ This repository stores reusable skills and their cloud runtime configuration. Ta
 | Create or edit Word documents | `.agents/skills/document-creator/SKILL.md` |
 | Create, read or edit PDFs | `.agents/skills/pdf/SKILL.md` |
 | Create editable PowerPoint slides | `.agents/skills/presentation-creator/SKILL.md` |
+| Personal job search, role screening, resume preparation, application deduplication or continuing saved application work | `.agents/skills/toudi-jianli-github/SKILL.md` |
 | Generate or edit images | `.agents/skills/imagegen/SKILL.md` |
 | Explicitly request an architecture review | `.agents/skills/improve-codebase-architecture/SKILL.md` |
 | Architecture vocabulary, design, decision discussion or domain modeling | `.agents/skills/codebase-design/SKILL.md`, `.agents/skills/grilling/SKILL.md`, `.agents/skills/domain-modeling/SKILL.md` |
@@ -34,4 +35,6 @@ For documents/PPT, use the state directory's `documents-venv/bin/python` and ins
 
 Commit skill source, licenses, and `.cloud` configuration. Keep dependency installations, `.env` values, login state, Chromium profiles, Xauthority, logs, resumes and other personal application material in private cloud runtime storage outside the checkout. Never commit these to GitHub merely because they are available locally.
 
-The requested resume-application skill is still unavailable: the uploaded RAR exceeds the 32 MiB executor transfer limit and has not been read, installed or tested. Do not claim it can run. When accessible source is supplied, inspect it, install its actual dependencies, validate its workflow without submitting applications, and update this routing table and cloud configuration. Installation alone does not request actual job applications.
+The personal resume skill is installed in the prepared cloud environment. Run `resume-skill status` and read its private runtime `SKILL.md` before using it. The public repository contains only a generic entrypoint; the uploaded package, identifying manifests, personal materials and mutable ledgers stay outside Git. A clone in an unrelated environment requires privately provisioned resources; select the prepared environment instead of asking the user to install tools on their phone.
+
+The original Windows DPAPI vault is not decryptable in this Linux environment, and recruitment-site login/submission has not been validated. Installation is not a request to submit applications. Use the existing verified cloud browser, the current conversation's task scope, and real website results when performing a later authorized task. After state-changing work, save a private incremental checkpoint with `resume-skill state export`; never push it to the public repository. New independent tasks must restore the latest authoritative private checkpoint before continuing; do not assume a published initial snapshot includes changes made in other tasks.

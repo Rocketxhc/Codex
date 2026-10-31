@@ -10,3 +10,8 @@ __pycache__/
 .cloud/state/
 .cloud/private/
 .cloud/logs/
+# Personal resume resources are provisioned only outside this public checkout.
+/.agents/skills/SKILL.md
+/.agents/skills/toudi-jianli-github/assets/
+/.agents/skills/toudi-jianli-github/overlay/
+/.agents/skills/toudi-jianli-github/resources-manifest.json

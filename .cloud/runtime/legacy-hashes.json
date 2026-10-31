@@ -10,5 +10,8 @@
   ],
   "desktop-tools/xorg.conf": [
     "7d4502e99bf44f076903e1ebb3129414ff5893e09f2b69c81d7f39a976c2d9c9"
+  ],
+  "activate.sh": [
+    "7f9e0e16a3dd316bc55205b547fbc4b2d7905e5d5f6ed90633d8dde50f24ef82"
   ]
 }

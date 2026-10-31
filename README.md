@@ -9,6 +9,7 @@
 | 网页访问和自动操作 | `agent-browser` |
 | 云端图形桌面操作 | `computer-use-cloud` |
 | Word、PDF、PPT | `document-creator`、`pdf`、`presentation-creator` |
+| 个人求职、简历制版、历史查重和续办 | `toudi-jianli-github`，读取已准备云环境的私有资料 |
 | 图片生成和编辑工作流 | `imagegen`，使用平台内置图片工具 |
 | 架构评审与配套流程 | `improve-codebase-architecture`、`codebase-design`、`grilling`、`domain-modeling` |
 
@@ -43,6 +44,20 @@ Skill 原文位于 `.agents/skills`。部分技能带隐藏标记，当前聊天
 
 已在当前云机器验证浏览器读取/填表/点击/截图和 HTTPS、中文 Word/PDF/PPT 生成与渲染、桌面鼠标/中英文输入及重启。新框架还通过了隔离空目录与全新 Git 克隆的依赖恢复、中文 Word/PPT 导出 PDF 和浏览器填表测试。图片工作流已安装，未在安装阶段实际生成图片，也不保证指定 Image 2 模型。验证范围见 [.cloud/VALIDATION.md](.cloud/VALIDATION.md)，个人运行资料不提交仓库。
 
-**待完成：简历投递 Skill。** 两次提供的 RAR 都超过平台单文件 32 MiB 传输限制，尚未读取、安装或测试。请提供小于限制的源码包（去掉 node_modules、虚拟环境、浏览器缓存等），或可访问的源码仓库/HTTPS 地址。安装完成后才会加入自动调用入口。
+## 简历 Skill 的跨终端调用
+
+`toudi-jianli-github` 已安装，现共有 11 个独立技能目录。手机或其他设备进入 Codex，选择此仓库及保存了私有资料的云环境，直接说“使用投递简历 GitHub 帮我筛选岗位／制作简历／检查是否已投过”。agent 会自动读取对应入口，不需要个人设备上的文件。
+
+该上传包包含个人事实、资料和历史记录，因此公开仓库只保存通用调用入口。完整原包在云端 `/workspace/skill-platform/resume-private/package`，工作目录在 `/workspace/skill-platform/resume-data`。发布该云环境的快照后，这些资料随所选环境恢复；仅克隆公开仓库的新环境不包含个人资料。不要把私有目录、安装包、状态备份或含个人字段的 manifest 上传到公开仓库。
+
+```bash
+source /workspace/skill-platform/activate.sh
+resume-skill status
+resume-skill prepare
+```
+
+已验证完整资源恢复、重复安装不改动台账、上下文读取、只读查重、中英文学校版 PDF 生成和渲染、私有增量状态导出与独立副本导入。本次没有投递申请。原 Windows DPAPI 密文无法直接在 Linux 解密，网站登录及实际上传/提交仍需按后续任务真实核验。
+
+后续台账变化保留在私有运行区，按 Skill 指引导出最新私有状态。多个独立任务不要同时写入同一台账；新任务要核对并恢复最新权威状态，不能假设发布时的初始快照已包含其他任务之后的更新。
 
 GitHub 配置提交和云环境发布是独立步骤：云配置保存后，仍需在平台环境设置中保存并发布，后续选择该环境的任务才能恢复相应快照。全新克隆也可通过上述脚本重建依赖。

@@ -59,9 +59,12 @@ npm ci --prefix "$cloud_state/browser-tools" --no-audit --no-fund
 "$cloud_state/bin/agent-browser" skills get core > "$cloud_state/validation/agent-browser-core.md"
 fc-match 'Noto Sans CJK SC'
 soffice --version
+if [[ -f "${TOUDI_GITHUB_PACKAGE_DIR:-$cloud_state/resume-private/package}/scripts/bootstrap.py" ]]; then
+  CLOUD_SKILLS_STATE_DIR="$cloud_state" CLOUD_SKILLS_REPO="$cloud_repo" "$cloud_state/bin/resume-skill" prepare
+fi
 python3 "$cloud_repo/.cloud/runtime/check.py" "$cloud_repo" "$cloud_state"
 if [[ "$cloud_register" = true ]]; then
   python3 "$cloud_repo/.cloud/register-skills.py"
 fi
 printf 'Cloud skill runtime ready. Source %s/activate.sh in each new shell.\n' "$cloud_state"
-printf '%s\n' 'No services started. Skill files remain in this repository; no snapshot-only source archive is required.'
+printf '%s\n' 'No services started. Generic skill sources are in Git; personal resume resources stay in the prepared private cloud environment.'

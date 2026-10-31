@@ -16,4 +16,10 @@ For a future smoke run after installation:
 python3 .cloud/smoke.py --state /workspace/skill-platform
 ```
 
-This validation demonstrates reconstruction in a fresh checkout on the current cloud machine. It is not a claim that a new managed task has already restored a published snapshot. Environment publication is performed by the platform. Live image generation, every advanced Office feature, and third-party account access were not tested by this setup. The oversized resume-application archive was unavailable and is not installed.
+This validation demonstrates reconstruction in a fresh checkout on the current cloud machine. It is not a claim that a new managed task has already restored a published snapshot. Environment publication is performed by the platform. Live image generation, every advanced Office feature, and third-party account access were not tested by this setup.
+
+## Personal resume extension
+
+A subsequent readable ZIP was installed into private cloud storage. Its installer checked all 193 resource hashes; repeated preparation left all 199 resulting runtime files byte-for-byte unchanged. Context access and read-only application deduplication passed. Anonymous Chinese and English school-style resumes were generated, text-checked, rendered with Poppler and visually inspected. A private state archive was exported and imported into an isolated runtime copy; the real ledger was unchanged and no application was submitted.
+
+The public entrypoint invokes that private installation without distributing its personal materials. The generic bootstrap checks private resume readiness only when the package is provisioned; it reports the missing private capability explicitly in unrelated empty environments. Linux cannot decrypt the original Windows DPAPI vault, and live recruitment-site login/submission was not tested.

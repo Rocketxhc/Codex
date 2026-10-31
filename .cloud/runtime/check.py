@@ -17,6 +17,7 @@ if not Path('/usr/lib/xorg/modules/drivers/dummy_drv.so').is_file():
 assets={
     'bin/agent-browser':'runtime/agent-browser',
     'bin/computer-use':'runtime/computer-use',
+    'bin/resume-skill':'runtime/resume-skill',
     'computer-start.sh':'runtime/computer-start.sh',
     'activate.sh':'runtime/activate.sh',
     'desktop-tools/xorg.conf':'runtime/xorg.conf',
@@ -45,3 +46,9 @@ subprocess.run([str(state/'bin/agent-browser'),'--version'],check=True)
 skills=sorted(p.parent.name for p in (repo/'.agents/skills').glob('*/SKILL.md'))
 if not skills: raise SystemExit('No repository skills found')
 print(f'Cloud runtime ready; {len(skills)} repository skills available; services start on demand.')
+private_package=Path(os.environ.get('TOUDI_GITHUB_PACKAGE_DIR',str(state/'resume-private/package')))
+if (private_package/'scripts/bootstrap.py').is_file():
+    environment=dict(os.environ, CLOUD_SKILLS_STATE_DIR=str(state), CLOUD_SKILLS_REPO=str(repo))
+    subprocess.run([str(state/'bin/resume-skill'),'status'],env=environment,check=True)
+else:
+    print('Personal resume resources are not provisioned in this state directory; use the prepared private cloud environment for that skill.')

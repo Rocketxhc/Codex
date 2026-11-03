@@ -32,9 +32,14 @@ def bootstrap():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['prepare', 'status', 'read', 'resolve', 'run', 'state'])
+    parser.add_argument('command', choices=['prepare', 'status', 'verify', 'update', 'read', 'resolve', 'run', 'state'])
     parser.add_argument('arguments', nargs=argparse.REMAINDER)
     args = parser.parse_args()
+    if args.command == 'update':
+        if PACKAGE != STATE / 'resume-private/package' or RUNTIME != STATE / 'resume-data':
+            raise SystemExit('Automatic update requires the standard private layout; custom TOUDI_GITHUB paths must be reconciled explicitly before updating.')
+        script = Path(__file__).with_name('update_private_package.py')
+        return subprocess.run([sys.executable, str(script), '--state-dir', str(STATE), *args.arguments]).returncode
     command = bootstrap()
     if args.command in ('prepare', 'status'):
         if args.arguments:
@@ -44,8 +49,18 @@ def main():
             # A normal failure message does not need personal package metadata.
             raise SystemExit('Private resume setup check failed; inspect the private package locally without publishing its contents.')
         report = json.loads(result.stdout)
-        print(json.dumps({k: report[k] for k in ('ready', 'created', 'runtimeRoot', 'verifiedFiles', 'expandedBytes', 'windowsEncryptedVaultNeedsOriginalWindowsUser') if k in report}, ensure_ascii=False, indent=2))
+        summary = {k: report[k] for k in ('ready', 'created', 'runtimeRoot', 'verifiedFiles', 'expandedBytes', 'windowsEncryptedVaultNeedsOriginalWindowsUser') if k in report}
+        installation = RUNTIME / 'references/cloud-installation-state.json'
+        if not installation.is_file():
+            installation = STATE / 'resume-private/installation.json'
+        if installation.is_file():
+            metadata = json.loads(installation.read_text(encoding='utf-8'))
+            if 'stateReconciliationRequired' in metadata:
+                summary['stateReconciliationRequired'] = metadata['stateReconciliationRequired']
+        print(json.dumps(summary, ensure_ascii=False, indent=2))
         return 0
+    if args.command == 'verify' and args.arguments:
+        parser.error('verify takes no additional arguments')
     if args.command == 'state':
         if not args.arguments or args.arguments[0] not in ('export', 'import'):
             parser.error('state requires export or import followed by its options')

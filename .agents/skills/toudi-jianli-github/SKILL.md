@@ -29,6 +29,8 @@ resume-skill run manage_submitted_jobs.py --help
 
 生成材料前按运行区最新确认记录、current-profile 和 resume-update 选择有效事实；参考 PDF 若标记 `readyForDirectUpload=false`，先生成当前事实副本。按最新链接规则核验每个 PDF 的完整 URL 注释目标；旧原件、历史申请和已冻结公司公共基线不因安装升级批量改写。
 
+制作求职信前，若运行区存在 `references/cover-letter-policy-20261103.md`，先读取它和 profile 对应规则。按最新的逐语言页数、正文充实度与定制要求验收，不用旧“最多一页”概括覆盖较新的明确要求；CV分页按原学校版式独立处理。内容论证和排版分别核验，不能用填充文字或版式操纵替代证据。
+
 浏览器优先使用已有 `agent-browser` 的云端代理与 CA 包装器。实际网站登录、上传和提交按当前页面及用户任务验证。旧 Windows DPAPI 密文在 Linux 不能直接解密；密文存在不等于云端账号已登录。
 
 ## 状态和持久化

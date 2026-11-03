@@ -54,7 +54,12 @@ Skill 原文位于 `.agents/skills`。部分技能带隐藏标记，当前聊天
 source /workspace/skill-platform/activate.sh
 resume-skill status
 resume-skill prepare
+resume-skill verify
 ```
+
+升级私有资料包时，把新包解压到仓库外的独立目录，先执行 `resume-skill update --package-dir <新包目录>` 查看三方比较，再加 `--apply` 应用。云端与新包同时修改的文件必须逐项核对合并；业务文本、references 和 private 文件有新差异也须审核，避免丢失旧基线中的记录。新包省略的旧文件仍保留，旧包和运行区会完整备份。它不以版本号或文件时间覆盖台账；默认路径以外的 `TOUDI_GITHUB_*` 自定义布局需明确核对后处理。
+
+`resume-skill status` 若显示 `stateReconciliationRequired=true`，表示本环境安装完成但其他旧环境的最新状态尚未合并。先读取私有安装记录中的差异说明；读取和材料准备可继续，后续新投递须先核对最新权威台账。当前任务安装与保存、发布所选云环境快照是两个步骤，不能把当前任务成功当作独立新任务的恢复验证。
 
 已验证完整资源恢复、重复安装不改动台账、上下文读取、只读查重、中英文学校版 PDF 生成和渲染、私有增量状态导出与独立副本导入。本次没有投递申请。原 Windows DPAPI 密文无法直接在 Linux 解密，网站登录及实际上传/提交仍需按后续任务真实核验。
 
